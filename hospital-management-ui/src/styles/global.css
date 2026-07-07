@@ -1,0 +1,148 @@
+/* ============================================================
+   MediCore Design Tokens
+   Palette: deep clinical teal + ink, warm-white surface,
+   coral-red vital accent. Type: Manrope (display/body) +
+   IBM Plex Mono (data/codes — patient IDs, invoice numbers).
+   Signature: the heartbeat pulse-line, used as a divider /
+   loading motif throughout the product.
+   ============================================================ */
+
+:root {
+  --color-bg: #f5f7f8;
+  --color-surface: #ffffff;
+  --color-surface-sunken: #eef1f2;
+  --color-ink: #0e1b1b;
+  --color-ink-soft: #4a5a5a;
+  --color-ink-faint: #8a9797;
+  --color-border: #e0e6e6;
+  --color-border-strong: #c7d1d1;
+
+  --color-brand: #0c6e6e;
+  --color-brand-dark: #084f4f;
+  --color-brand-light: #e3f1f1;
+  --color-brand-tint: #d4e9e9;
+
+  --color-vital: #e4572e;
+  --color-vital-light: #fdeae3;
+
+  --color-success: #2f9e6e;
+  --color-success-light: #e3f5ec;
+  --color-warning: #d69a1f;
+  --color-warning-light: #fbf1dc;
+  --color-danger: #d64545;
+  --color-danger-light: #fbe6e6;
+  --color-info: #2f6f9e;
+  --color-info-light: #e5f0f7;
+
+  --font-display: "Manrope", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  --shadow-sm: 0 1px 2px rgba(14, 27, 27, 0.06);
+  --shadow-md: 0 4px 16px rgba(14, 27, 27, 0.08);
+  --shadow-lg: 0 12px 32px rgba(14, 27, 27, 0.12);
+
+  --sidebar-width: 248px;
+  --topbar-height: 64px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+::selection {
+  background: var(--color-brand-tint);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  letter-spacing: -0.01em;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Focus visibility */
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
+/* ---------- Signature: heartbeat pulse-line ---------- */
+.pulse-divider {
+  width: 100%;
+  height: 20px;
+  display: block;
+}
+.pulse-divider path {
+  stroke: var(--color-brand);
+  stroke-width: 1.5;
+  fill: none;
+  opacity: 0.35;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .pulse-animate path {
+    stroke-dasharray: 340;
+    stroke-dashoffset: 340;
+    animation: pulse-draw 2.2s ease-in-out infinite;
+  }
+}
+@keyframes pulse-draw {
+  0% {
+    stroke-dashoffset: 340;
+    opacity: 0.15;
+  }
+  50% {
+    stroke-dashoffset: 0;
+    opacity: 0.6;
+  }
+  100% {
+    stroke-dashoffset: -340;
+    opacity: 0.15;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
